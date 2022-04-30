@@ -1,4 +1,4 @@
-module Users
+module Users extend self
 
   def check_user_exists(username)
     ret_val = system("getent passwd #{username} &> /dev/null")

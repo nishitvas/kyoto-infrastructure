@@ -1,4 +1,4 @@
-module PackageInstallation
+module PackageInstallation extend self
 
   def check(command)
     ret_val = system("which #{command} &> /dev/null")
