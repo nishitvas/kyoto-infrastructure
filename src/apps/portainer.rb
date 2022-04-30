@@ -1,4 +1,4 @@
-require_relative "../docker"
+require_relative "../core/docker"
 
 module Portainer extend self
 
