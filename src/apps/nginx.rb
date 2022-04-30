@@ -20,6 +20,10 @@ module Nginx extend self
     system("systemctl enable nginx")
     system("firewall-cmd --permanent --add-port={80/tcp,443/tcp} > /dev/null")
     system("firewall-cmd --reload > /dev/null")
+
+    # SELinux: Allow nginx to connect to other TCP ports
+    system("setsebool -P httpd_can_network_connect 1")
+
     system("systemctl reload nginx")
     puts "==> Nginx setup complete"
   end

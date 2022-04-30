@@ -11,8 +11,8 @@ module Portainer extend self
     Docker.run_one_instance(
       image: "portainer/portainer-ce:2.11.1",
       name: "portainer",
-      port_mappings: [ "9443:9443" ],
-      volume_mappings: [
+      ports: [ "9443:9443" ],
+      volumes: [
         "/var/run/docker.sock:/var/run/docker.sock",
         "portainer_data:/data"
       ],

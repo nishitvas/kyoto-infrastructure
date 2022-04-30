@@ -28,12 +28,13 @@ module Docker extend self
     end
   end
 
-  def run_one_instance(image:, name:, port_mappings: [], volume_mappings: [], restart_policy: "no")
+  def run_one_instance(image:, name:, ports: [], volumes: [], environment: [], restart_policy: "no")
     unless system("docker ps | grep -q #{name}")
-      puts "Starting docker instance #{} -> #{}"
-      port_mapping = port_mappings.map { |p| "-p #{p}" }.join(" ")
-      volume_mapping = volume_mappings.map { |v| "-v #{v}" }.join(" ")
-      system("docker run -d #{port_mapping} --name #{name} --restart #{restart_policy} #{volume_mappings} #{image}")
+      puts "Starting docker instance #{name} -> #{image}"
+      port_mapping = ports.map { |p| "-p #{p}" }.join(" ")
+      volume_mapping = volumes.map { |v| "-v #{v}" }.join(" ")
+      env_var_mapping = environment.map { |e| "-e #{e}" }.join(" ")
+      system("docker run -d #{port_mapping} #{env_var_mapping} --name #{name} --restart=#{restart_policy} #{volume_mapping} #{image}")
     end
   end
 end
