@@ -15,7 +15,7 @@ module Nginx extend self
     end
 
     puts "Copying nginx configuration"
-    FileUtils.cp_r "#{__dir__}/../config/nginx/.", "/etc/nginx", :verbose => true
+    FileUtils.cp_r "#{__dir__}/../../config/nginx/.", "/etc/nginx", :verbose => true
 
     system("systemctl enable nginx")
     system("firewall-cmd --permanent --add-port={80/tcp,443/tcp} > /dev/null")
