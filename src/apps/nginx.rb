@@ -1,5 +1,5 @@
 require "fileutils"
-require_relative "./package-installation"
+require_relative "../core/package-installation"
 
 module Nginx extend self
 
