@@ -12,6 +12,8 @@ module Docker extend self
       PackageInstallation.add_repo("https://download.docker.com/linux/fedora/docker-ce.repo")
       PackageInstallation.install(%w( docker-ce docker-ce-cli containerd.io docker-compose-plugin ))
       system("systemctl start docker")
+      system("echo -e '#!/bin/bash\ndocker compose \"$@\"' >> /usr/bin/docker-compose")
+      system("chmod a+x /usr/bin/docker-compose")
       puts "Docker installation complete"
     end
 
