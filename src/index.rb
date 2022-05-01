@@ -12,5 +12,8 @@ Users.create_user(ENV["KYOTO_USER_NAME"], password: ENV["KYOTO_USER_PASS"], with
 # Setup Docker
 Docker.setup()
 
+# Setup github user
+Users.create_user("github", with_home_dir: true, groups: ["docker"])
+
 # Setup Applications
 Applications.setup()
