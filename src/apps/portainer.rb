@@ -17,7 +17,7 @@ module Portainer extend self
         "portainer_data:/data"
       ],
       restart_policy: "always",
-      labels: Traefik.getLabels(app_name: "portainer", path_prefix: "/portainer", port: 9000)
+      labels_file: Traefik.getLabelsFile("portainer")
     )
     puts "==> Portainer setup complete"
   end

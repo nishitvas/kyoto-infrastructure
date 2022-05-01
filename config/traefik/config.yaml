@@ -52,6 +52,9 @@ api:
 
 providers:
   docker: {}
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
 
 log:
   level: DEBUG
