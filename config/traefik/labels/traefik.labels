@@ -5,3 +5,4 @@ traefik.http.routers.traefik.tls.domains[0].main=kyoto.nishitvas.com
 traefik.http.routers.traefik.tls.domains[1].main=kyoto.nishitvas.dev
 traefik.http.routers.traefik.tls.domains[2].main=kyoto.nishitvas.me
 traefik.http.routers.traefik.rule=PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+traefik.http.routers.traefik.middlewares=oauth-chain@file

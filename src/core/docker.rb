@@ -28,14 +28,22 @@ module Docker extend self
     end
   end
 
+  def check_and_create_network(network_name)
+    unless system("docker network ls | grep -w #{network_name}")
+      puts ("Creating docker network")
+      system("docker network create #{network_name}")
+    end
+  end
+
   def run_one_instance(image:, name:, ports: [], volumes: [], environment: [], labels_file: nil, restart_policy: "no")
-    unless system("docker ps | grep -q #{name}")
+    check_and_create_network("kyoto")
+    unless system("docker ps --filter name=#{name} | grep -vq CONTAINER")
       puts "Starting docker instance #{name} -> #{image}"
       port_mapping = ports.map { |p| p.split(/:/)[0].to_i < 9000 ? "-p #{p}" : "-p 127.0.0.1:#{p}" }.join(" ")
       volume_mapping = volumes.map { |v| "-v #{v}" }.join(" ")
       env_var_mapping = environment.map { |e| "-e #{e}" }.join(" ")
       label_mapping = labels_file.nil? ? "" : "--label-file #{labels_file}"
-      system("docker run -d #{port_mapping} #{env_var_mapping} --name #{name} --restart=#{restart_policy} #{volume_mapping} #{label_mapping} #{image}")
+      system("docker run --net kyoto -d #{port_mapping} #{env_var_mapping} --name #{name} --restart=#{restart_policy} #{volume_mapping} #{label_mapping} #{image}")
     end
   end
 end
