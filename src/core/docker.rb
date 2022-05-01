@@ -34,7 +34,7 @@ module Docker extend self
       port_mapping = ports.map { |p| p.split(/:/)[0].to_i < 9000 ? "-p #{p}" : "-p 127.0.0.1:#{p}" }.join(" ")
       volume_mapping = volumes.map { |v| "-v #{v}" }.join(" ")
       env_var_mapping = environment.map { |e| "-e #{e}" }.join(" ")
-      label_mapping = label_file.nil? ? "" : "--label-file #{label_file}"
+      label_mapping = labels_file.nil? ? "" : "--label-file #{labels_file}"
       system("docker run -d #{port_mapping} #{env_var_mapping} --name #{name} --restart=#{restart_policy} #{volume_mapping} #{label_mapping} #{image}")
     end
   end
