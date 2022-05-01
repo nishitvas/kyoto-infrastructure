@@ -5,7 +5,7 @@ module Docker extend self
 
   def setup()
     puts ""
-    puts "==> Staring Docker setup"
+    puts "==> Starting Docker setup"
     unless PackageInstallation.check("docker")
       puts "Installing docker"
       PackageInstallation.install(%w( dnf-plugins-core ))
@@ -35,8 +35,7 @@ module Docker extend self
       volume_mapping = volumes.map { |v| "-v #{v}" }.join(" ")
       env_var_mapping = environment.map { |e| "-e #{e}" }.join(" ")
       label_mapping = labels.map { |l| "-l '#{l}'" }.join(" ")
-      docker_internal_host = "--add-host host.docker.internal:host-gateway"
-      system("docker run -d #{port_mapping} #{env_var_mapping} --name #{name} --restart=#{restart_policy} #{volume_mapping} #{label_mapping} #{docker_internal_host} #{image}")
+      system("docker run -d #{port_mapping} #{env_var_mapping} --name #{name} --restart=#{restart_policy} #{volume_mapping} #{label_mapping} #{image}")
     end
   end
 end

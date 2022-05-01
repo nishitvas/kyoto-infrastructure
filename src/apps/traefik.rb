@@ -4,7 +4,7 @@ module Traefik extend self
 
   def setup()
     puts ""
-    puts "==> Staring Traefik setup"
+    puts "==> Starting Traefik setup"
 
     config_dir = "#{__dir__}/../../config/traefik"
 

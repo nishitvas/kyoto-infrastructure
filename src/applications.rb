@@ -5,7 +5,7 @@ module Applications extend self
 
   def setup()
     puts ""
-    puts "==> Staring Apps setup"
+    puts "==> Starting Apps setup"
 
     Traefik.setup()
     Portainer.setup()

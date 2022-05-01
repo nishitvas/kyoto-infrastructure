@@ -5,7 +5,7 @@ module Portainer extend self
 
   def setup()
     puts ""
-    puts "==> Staring Portainer setup"
+    puts "==> Starting Portainer setup"
 
     portainer_volume = "portainer_data"
     Docker.check_and_create_volume(portainer_volume)
