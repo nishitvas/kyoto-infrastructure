@@ -1,5 +1,4 @@
-require_relative "./apps/nginx"
-require_relative "./apps/certbot"
+require_relative "./apps/traefik"
 require_relative "./apps/portainer"
 
 module Applications extend self
@@ -8,8 +7,7 @@ module Applications extend self
     puts ""
     puts "==> Staring Apps setup"
 
-    Nginx.setup()
-    Certbot.setup()
+    Traefik.setup()
     Portainer.setup()
 
     puts "==> Apps setup complete"

@@ -1,4 +1,5 @@
 require_relative "../core/docker"
+require_relative "./traefik"
 
 module Portainer extend self
 
@@ -11,12 +12,12 @@ module Portainer extend self
     Docker.run_one_instance(
       image: "portainer/portainer-ce:2.11.1",
       name: "portainer",
-      ports: [ "9443:9443" ],
       volumes: [
         "/var/run/docker.sock:/var/run/docker.sock",
         "portainer_data:/data"
       ],
-      restart_policy: "always"
+      restart_policy: "always",
+      labels: Traefik.getLabels(app_name: "portainer", path_prefix: "/portainer", port: 9000)
     )
     puts "==> Portainer setup complete"
   end
