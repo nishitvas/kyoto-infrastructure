@@ -2,6 +2,6 @@ traefik.http.routers.oauth.entrypoints=websecure
 traefik.http.routers.oauth.rule=Host(`oauth.kyoto.nishitvas.com`)
 traefik.http.routers.oauth.tls.certresolver=defaultCertResolver
 traefik.http.routers.oauth.tls.domains[0].main=kyoto.nishitvas.com
-traefik.http.routers.oauth.middlewares=oauth-chain@file"
+traefik.http.routers.oauth.middlewares=oauth-chain@file
 traefik.http.routers.oauth.service=oauth
 traefik.http.services.oauth.loadbalancer.server.port=4181
