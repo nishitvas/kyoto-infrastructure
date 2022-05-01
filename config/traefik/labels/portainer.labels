@@ -5,6 +5,6 @@ traefik.http.routers.portainer.tls.domains[0].main=kyoto.nishitvas.com
 traefik.http.routers.portainer.tls.domains[1].main=kyoto.nishitvas.dev
 traefik.http.routers.portainer.tls.domains[2].main=kyoto.nishitvas.me
 traefik.http.routers.portainer.rule=PathPrefix(`/portainer`)
-traefik.http.routers.portainer.middlewares=portainer-strip-prefix,middlewares-oauth@file
+traefik.http.routers.portainer.middlewares=portainer-strip-prefix,oauth-chain@file
 traefik.http.middlewares.portainer-strip-prefix.stripprefix.prefixes=/portainer
 traefik.http.services.portainer.loadbalancer.server.port=9000

@@ -1,5 +1,6 @@
 require_relative "./apps/traefik"
 require_relative "./apps/portainer"
+require_relative "./apps/oauth"
 
 module Applications extend self
 
@@ -8,6 +9,7 @@ module Applications extend self
     puts "==> Starting Apps setup"
 
     Traefik.setup()
+    OAuth.setup()
     Portainer.setup()
 
     puts "==> Apps setup complete"
