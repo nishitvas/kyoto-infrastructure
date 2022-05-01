@@ -31,6 +31,6 @@ module Traefik extend self
   end
 
   def getLabelsFile(app_name)
-    return "#{__dir__}/../../config/traefic/labels/#{app_name}.labels"
+    return "#{__dir__}/../../config/traefik/labels/#{app_name}.labels"
   end
 end
